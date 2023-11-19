@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Landing Page</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background: linear-gradient(rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.0)), url('bg1.jpeg');
+            background-size: cover;
+            background-position: center;
+            height: 90vh;
+            font-family: "Roboto";
+        }
+
+        .container {
+            position: relative;
+            top: 20%;
+            transform: translateY(-50%) translateX(1.5%);
+            width: 100%;
+            text-align: center;
+        }
+
+        .input-box {
+            width: 300px;
+            height: 40px;
+            border: none;
+            border-radius: 20px;
+            border: 1px;
+            padding: 10px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.5);
+            color: #000;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .submit-button {
+            width: 150px;
+            height: 40px;
+            border: none;
+            border-radius: 20px;
+            margin-top: 20px;
+            background-color: #000;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        @media screen and (min-width: 80rem) {
+            .container {
+                margin: 1em 2em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <h1 style="font-family: sans-serif; margin: 20px; color: #973d2b;">Personal Stylist</h1> -->
+    <div class="container">
+        <h1 style="font-size: 50px;font-weight: 900;">Personal Styling</h1>
+        <h2>For everyone</h2>
+        <p>Add your email to let us know your interest about having a personal stylist </p>
+        <p>help you dress up and keep up
+            with the fashion.</p>
+
+        <form>
+            <input type=" email" class="input-box" placeholder="Enter your email address" required>
+            <br>
+            <button type="submit" class="submit-button">Subscribe</button>
+        </form>
+    </div>
+</body>
+
+</html>
