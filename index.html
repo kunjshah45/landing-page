@@ -55,6 +55,18 @@
             }
         }
     </style>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+    <!-- Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 </head>
 
 <body>
@@ -66,12 +78,72 @@
         <p>help you dress up and keep up
             with the fashion.</p>
 
-        <form>
-            <input type=" email" class="input-box" placeholder="Enter your email address" required>
+        <form id="subscribeForm">
+            <input type="email" id="email" class="input-box" placeholder="Enter your email address" required>
             <br>
             <button type="submit" class="submit-button">Subscribe</button>
         </form>
+
+        <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="successModalLabel">Success</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Data has been successfully saved.
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
+
+<script>
+    document.getElementById('subscribeForm').addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        // Get the email value
+        const email = document.getElementById('email').value;
+
+        // Create a JSON object with the email value
+        const data = {
+            email: email
+        };
+
+        const url = "https://us-central1-contact-emailer-9c5b6.cloudfunctions.net/saveData";
+
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: JSON.stringify(data),
+            redirect: 'follow'
+        };
+
+
+        fetch(url, requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                $('#successModal').modal('show');
+                console.log(result);
+
+                setTimeout(function () {
+                    $('#successModal').modal('hide');
+                }, 5000);
+            })
+            .catch(error => {
+                alert("Something went wrong");
+                console.error('There was a problem with the fetch operation:', error);
+                throw new Error('Network response was not ok');
+            });
+    });
+</script>
 
 </html>
